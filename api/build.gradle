@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.spring.dependency.management)
 }
 
+
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
 dependencies {
@@ -17,6 +18,7 @@ dependencies {
     implementation libs.spring.starter.actuator
     implementation libs.spring.starter.logging
     implementation libs.spring.starter.oauth2.client
+    implementation libs.spring.security.oauth2.resource.server
     implementation libs.spring.boot.actuator
     compileOnly libs.spring.boot.devtools
 
@@ -118,6 +120,10 @@ checkstyle {
 
 test {
     useJUnitPlatform()
+}
+
+springBoot {
+    buildInfo()
 }
 
 tasks.register('buildDockerImageTask', DockerBuildImage) {
